@@ -1,7 +1,6 @@
-// Block Dude levels
+// Block Dude levels - all 11 original TI-83/84 levels by Brandon Sterner
 // x = wall/brick, 0 = movable block, < or > = player (facing dir), ! = door/goal
-// Level data from the original TI-83/84 Block Dude by Brandon Sterner
-// Source: github.com/cbarrick/blockdude
+// Verified across cbarrick/blockdude, catascopic/block-dude, merthsoft/blockdudece, oxguy3/blockdude
 
 window.LEVELS = [
   // Level 1
@@ -53,9 +52,9 @@ window.LEVELS = [
     ' x         xx          x',
     ' x                    0x',
     ' x                   00x',
-    ' x               !   xxx',
+    ' x               <   xxx',
     'xx    x          x   x  ',
-    'x<    x 0        xxxxx  ',
+    'x!    x 0        xxxxx  ',
     'xxxxx x 0   0  xxx      ',
     '    x x 0 x x0 x        ',
     '    x xxxxxxxxxx        ',
@@ -71,7 +70,7 @@ window.LEVELS = [
     'x     x              x',
     'x     x              x',
     'x     x0000          x',
-    'x<   xxxxxxx!        x',
+    'x!   xxxxxxx<        x',
     'xx xxx     xx x     0x',
     ' x x        x xx   00x',
     ' x x        x xx  000x',
@@ -103,12 +102,95 @@ window.LEVELS = [
     ' x                    0x',
     ' x                    0x',
     'xx                   00x',
-    'x<   0               xxx',
+    'x!   0               xxx',
     'xx   x 0     x    xx x  ',
-    ' x   x 0    xx 0 !xxxx  ',
+    ' x   x 0    xx 0 <xxxx  ',
     ' xx  x 000  xx 000x     ',
     '  x  xxxxxx xxxxxxx     ',
     '  xx x    xxx           ',
     '   xxx                  '
+  ],
+  // Level 8
+  [
+    ' xxx       xxxx   xxxxxxx  ',
+    'x   x     x    x x       x ',
+    'x    x   x     xx         x',
+    'x0    xxx    x x     xxx  x',
+    'x00         xx      xx x  x',
+    'xxxx       xx          x! x',
+    '   xx            xx    xx x',
+    '  x    0 x      x  x      x',
+    '  x    0x x    x   x      x',
+    ' x   xxx   x    x  x     0x',
+    ' x      x x      xx     00x',
+    'x        x           xxxxxx',
+    'x            0            x',
+    'x    0      xxx          0x',
+    'x   xxx                 00x',
+    'x        0       0  <  000x',
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxx'
+  ],
+  // Level 9
+  [
+    '        xxx         ',
+    '       x   x        ',
+    '      x     x  xxxxx',
+    '     x       xx    x',
+    '    x     0        x',
+    '   x      00      0x',
+    '  x       xxx    00x',
+    ' x            < xxxx',
+    'x             0    x',
+    'x!           xxx   x',
+    'xx    xx   x      0x',
+    ' x    xx0  xx   xxxx',
+    ' x    xxxxxxx  xx   ',
+    ' xxx  x     x xx    ',
+    '   x xx     xxx     ',
+    '   xxx              '
+  ],
+  // Level 10
+  [
+    '   xxxxxxxxxxxxxxxxxxxxx   ',
+    ' xx           x         x  ',
+    'xxxx0       00x0   000 0xx ',
+    'x  xx  x   xxxxx  0xxx xx x',
+    'x   x  xx        xxx xxx  x',
+    'x   xx  xx0000            x',
+    'x!       xxxxxxx          x',
+    'xx        x   xxx        xx',
+    ' x     0   x x  xx        x',
+    ' x     x    x    xx       x',
+    ' xxxx  xx             xxxxx',
+    '   xxxxx      <           x',
+    '   x          x           x',
+    '   x         xx    xxxxxxxx',
+    '   x        xx           x ',
+    '   x          0         0x ',
+    '   x0    xxxxxxxxxxx   00x ',
+    '   x00  xx         xx 000x ',
+    '   xxxxxx           xxxxxx ',
+  ],
+  // Level 11
+  [
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+    'x  x   x                    x',
+    'x     0x00            xxxxx x',
+    'x0   xxx 0xx     0  xx  ! x x',
+    'x00    xxx   <  0       x x x',
+    'xxx  00x     x 0          x x',
+    'x   xxxx      x  xxx   xxx  x',
+    'x0            x x      x  0 x',
+    'x00       xxx x x0    x  xxxx',
+    'xxxx 0   xxx  x xx0  x 0 x  x',
+    'x           0 xxx  0x   x   x',
+    'x   0     00 x   xxxx       x',
+    'x    xxxxxxxxx        xxxxx x',
+    'x              0   0xx    x x',
+    'xxxx           0   x    00x x',
+    'x0xx   x    x          xxxx x',
+    'xx0xxx x    x   000 0       x',
+    'x0x0x0xx    x        000    x',
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
   ],
 ];
