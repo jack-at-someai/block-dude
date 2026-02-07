@@ -1,6 +1,7 @@
 // Block Dude levels
-// x = wall/brick, 0 = movable block, ! = player start, < or > = door/exit
-// Level data adapted from the original TI-83/84 Block Dude by Brandon Sterner
+// x = wall/brick, 0 = movable block, < or > = player (facing dir), ! = door/goal
+// Level data from the original TI-83/84 Block Dude by Brandon Sterner
+// Source: github.com/cbarrick/blockdude
 
 window.LEVELS = [
   // Level 1
@@ -12,6 +13,7 @@ window.LEVELS = [
     'x   x       x      x',
     'x!  x   x 0 x 0 >  x',
     'xxxxxxxxxxxxxxxxxxxx',
+    '                    '
   ],
   // Level 2
   [
@@ -38,7 +40,7 @@ window.LEVELS = [
     'x x x    x  xxxxx  ',
     'x x x00 xx  x      ',
     'x!x xxxxxx xx      ',
-    'xxx xx   xxx       ',
+    'xxx xx   xxx       '
   ],
   // Level 4
   [
@@ -51,13 +53,13 @@ window.LEVELS = [
     ' x         xx          x',
     ' x                    0x',
     ' x                   00x',
-    ' x               <   xxx',
+    ' x               !   xxx',
     'xx    x          x   x  ',
-    'x!    x 0        xxxxx  ',
+    'x<    x 0        xxxxx  ',
     'xxxxx x 0   0  xxx      ',
     '    x x 0 x x0 x        ',
     '    x xxxxxxxxxx        ',
-    '    xxx                 ',
+    '    xxx                 '
   ],
   // Level 5
   [
@@ -69,28 +71,28 @@ window.LEVELS = [
     'x     x              x',
     'x     x              x',
     'x     x0000          x',
-    'x!   xxxxxxx<        x',
+    'x<   xxxxxxx!        x',
     'xx xxx     xx x     0x',
     ' x x        x xx   00x',
     ' x x        x xx  000x',
     ' xxx        x xxxxxxxx',
-    '            xxx       ',
+    '            xxx       '
   ],
   // Level 6
   [
     ' xxx             xxxx',
     ' x  xxxxxxxxxxxxx   x',
     'xx                  x',
-    'x!                  x',
+    'x<                  x',
     'xx                  x',
     ' x                00x',
     ' x00        x  0  xxx',
-    ' x000       x<000 x  ',
+    ' x000       x!000 x  ',
     ' x0000      xxxxx x  ',
     ' xxxxx    xxx   xxx  ',
     '     x   0x          ',
     '     xx xxx          ',
-    '      xxx            ',
+    '      xxx            '
   ],
   // Level 7
   [
@@ -101,71 +103,12 @@ window.LEVELS = [
     ' x                    0x',
     ' x                    0x',
     'xx                   00x',
-    'x!   0               xxx',
+    'x<   0               xxx',
     'xx   x 0     x    xx x  ',
-    ' x   x 0    xx 0 <xxxx  ',
+    ' x   x 0    xx 0 !xxxx  ',
     ' xx  x 000  xx 000x     ',
     '  x  xxxxxx xxxxxxx     ',
     '  xx x    xxx           ',
-    '   xxx                  ',
-  ],
-  // Level 8
-  [
-    'x                      x',
-    'x   xx                 x',
-    'x    x                 x',
-    'x    x            xx   x',
-    'x                 x    x',
-    'x                 x    x',
-    'x     0          0x    x',
-    'x!   0x    0    00x  < x',
-    'xxxxxxx  0 x   xxxxxxx x',
-    '      x  xxx   x     xxx',
-    '      xxxx x   x       ',
-    '           xxxxx       ',
-  ],
-  // Level 9
-  [
-    '  xxx              xxx  ',
-    '  x  x            x  x  ',
-    '  x   xxxxxxxxxxxx   x  ',
-    ' x                    x ',
-    ' x                    x ',
-    'x!                   0 x',
-    'xx  0           0   00 x',
-    ' x  x  0       0x  xxx<x',
-    ' x  x  x  00   xx  x xx',
-    ' x  xxxx  xxx  xxx xx   ',
-    ' xxx   xxxxxxxxx xxxx   ',
-    '       x       xxx      ',
-  ],
-  // Level 10
-  [
-    'x                        x',
-    'x  xxxx                  x',
-    'x      x      xxxx      x',
-    'x       x    x    x     x',
-    'x        x  x      x    x',
-    'x         xx        x   x',
-    'x                    x  x',
-    'x      0    0     0  x  x',
-    'x!    0x   0x    0x  x< x',
-    'xxxxxxxx   xx   xxx  xxxx',
-    '       x  xxx  xx        ',
-    '       xxxxxxxxxxxxx     ',
-  ],
-  // Level 11
-  [
-    ' xxxx               xxxx ',
-    ' x   x             x   x ',
-    'x     xxxxxxxxxxxxx     x',
-    'x                        x',
-    'x                        x',
-    'x       0       0        x',
-    'x!     0x  0   0x     <  x',
-    'xx    xxx  x  xxx    xx  x',
-    ' x   xx x xx xx x   x xxx',
-    ' x  x  xxxxxxxxxxxx x    ',
-    ' xxx                xxx  ',
+    '   xxx                  '
   ],
 ];

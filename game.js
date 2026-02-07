@@ -12,7 +12,6 @@
   const EMPTY = 0;
   const WALL = 1;
   const BLOCK = 2;
-  const PLAYER = 3;
   const DOOR = 4;
 
   // Sounder colors
@@ -54,13 +53,15 @@
         if (ch === 'x') grid[r][c] = WALL;
         else if (ch === '0') grid[r][c] = BLOCK;
         else if (ch === '!') {
-          player = { r, c };
-          grid[r][c] = EMPTY;
+          // '!' is the DOOR/GOAL
+          doorPos = { r, c };
+          grid[r][c] = DOOR;
         }
         else if (ch === '<' || ch === '>') {
-          doorPos = { r, c };
+          // '<'/'>' is the PLAYER with facing direction
+          player = { r, c };
           facing = ch === '>' ? 1 : -1;
-          grid[r][c] = DOOR;
+          grid[r][c] = EMPTY;
         }
       }
     }
@@ -68,10 +69,6 @@
     // If player not found, default
     if (!player) player = { r: 0, c: 0 };
     if (!doorPos) doorPos = { r: 0, c: cols - 1 };
-
-    // Default facing toward door
-    if (doorPos.c > player.c) facing = 1;
-    else facing = -1;
 
     carrying = false;
     moves = 0;
@@ -107,14 +104,19 @@
     }
   }
 
+  function isEmptyNotDoor(r, c) {
+    if (r < 0 || r >= rows || c < 0 || c >= cols) return false;
+    return grid[r][c] === EMPTY;
+  }
+
   function applyBlockGravity() {
-    // Make all blocks fall
+    // Make all blocks fall (but never onto the door)
     let changed = true;
     while (changed) {
       changed = false;
       for (let r = rows - 2; r >= 0; r--) {
         for (let c = 0; c < cols; c++) {
-          if (grid[r][c] === BLOCK && r + 1 < rows && isEmpty(r + 1, c)) {
+          if (grid[r][c] === BLOCK && r + 1 < rows && isEmptyNotDoor(r + 1, c)) {
             grid[r + 1][c] = BLOCK;
             grid[r][c] = EMPTY;
             changed = true;
@@ -165,49 +167,41 @@
   function pickupOrPlace() {
     if (won) return;
 
+    const fc = player.c + facing;
+
     if (carrying) {
-      // Place block
-      const tc = player.c + facing;
-      const tr = player.r - 1; // place at head level
+      // Place block in front
+      if (fc < 0 || fc >= cols) return;
 
-      if (tc < 0 || tc >= cols || tr < 0) return;
+      const aboveFront = player.r - 1;
+      if (aboveFront < 0) return;
 
-      // Find where the block would land
-      if (!isEmpty(tr, tc)) return;
-
-      // Place it and let gravity take it
-      grid[tr][tc] = BLOCK;
-      applyBlockGravity();
-      carrying = false;
-      moves++;
-    } else {
-      // Pick up block
-      const fc = player.c + facing;
-      const fr = player.r;
-
-      // Check in front at same level
-      if (fc >= 0 && fc < cols && grid[fr][fc] === BLOCK) {
-        // Make sure nothing on top of the block
-        if (fr - 1 >= 0 && issolid(fr - 1, fc)) return;
-        // Make sure room above player
-        if (player.r - 1 < 0) return;
-        if (!isEmpty(player.r - 1, player.c)) return;
-
-        grid[fr][fc] = EMPTY;
+      // Option 1: front at same level AND above-front are both empty -> drop in front, gravity applies
+      if (isEmptyNotDoor(player.r, fc) && isEmptyNotDoor(aboveFront, fc)) {
+        grid[player.r][fc] = BLOCK;
         applyBlockGravity();
-        carrying = true;
+        carrying = false;
         moves++;
         return;
       }
 
-      // Check one level up in front (block on a ledge)
-      if (fc >= 0 && fc < cols && fr - 1 >= 0 && grid[fr - 1][fc] === BLOCK) {
-        // Make sure nothing on top
-        if (fr - 2 >= 0 && issolid(fr - 2, fc)) return;
+      // Option 2: obstacle in front but above-front is empty -> place on top
+      if (isEmptyNotDoor(aboveFront, fc)) {
+        grid[aboveFront][fc] = BLOCK;
+        carrying = false;
+        moves++;
+        return;
+      }
+    } else {
+      // Pick up block in front at same level
+      if (fc >= 0 && fc < cols && grid[player.r][fc] === BLOCK) {
+        // Make sure nothing on top of the block
+        if (player.r - 1 >= 0 && issolid(player.r - 1, fc)) return;
+        // Make sure room above player head
         if (player.r - 1 < 0) return;
         if (!isEmpty(player.r - 1, player.c)) return;
 
-        grid[fr - 1][fc] = EMPTY;
+        grid[player.r][fc] = EMPTY;
         applyBlockGravity();
         carrying = true;
         moves++;
